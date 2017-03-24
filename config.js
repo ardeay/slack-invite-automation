@@ -17,4 +17,6 @@ module.exports = {
   inviteToken: process.env.INVITE_TOKEN || null,
 
   locale: process.env.LOCALE || "en",
+
+  slackWebHook: process.env.SLACK_WEB_HOOK || null,
 };

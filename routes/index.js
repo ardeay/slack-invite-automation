@@ -11,6 +11,16 @@ router.get('/', function(req, res) {
 
 router.post('/invite', function(req, res) {
   if (req.body.email && (!config.inviteToken || (!!config.inviteToken && req.body.token === config.inviteToken))) {
+
+    var slack_payload = {
+        // Pass a simple key-value pair
+        'channel': '#leads',
+        'username': "webhookbot",
+        'text': 'New Developer '+req.body.email+' was invited to ZestyioDevs Channel. Go ask him what he is looking for.',
+        'icon_emoji': ':computer:'
+
+    };
+
     request.post({
         url: 'https://'+ config.slackUrl + '/api/users.admin.invite',
         form: {
@@ -26,10 +36,18 @@ router.post('/invite', function(req, res) {
         if (err) { return res.send('Error:' + err); }
         body = JSON.parse(body);
         if (body.ok) {
+          // notify the leads channel in main Zesty.io Slack
+          request.post({
+              url: config.slackWebHook,
+              form: JSON.stringify(slack_payload)
+
+          });
           res.render('result', {
             community: config.community,
             message: 'Success! Check &ldquo;'+ req.body.email +'&rdquo; for an invite from Slack.'
           });
+
+
         } else {
           var error = body.error;
           if (error === 'already_invited' || error === 'already_in_team') {
