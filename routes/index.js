@@ -20,7 +20,6 @@ router.post('/invite', function(req, res) {
         'icon_emoji': ':computer:'
 
     };
-
     request.post({
         url: 'https://'+ config.slackUrl + '/api/users.admin.invite',
         form: {

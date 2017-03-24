@@ -7,9 +7,25 @@ html
     link(href="css/style.css", rel="stylesheet", type="text/css")
     link(href="//fonts.googleapis.com/css?family=Lato:300,400,700,900,700italic|Open+Sans:700italic,400,600,300,700,800", rel="stylesheet", type="text/css")
   body
+    .network-bar
+      .container
+        a(href="https://www.zesty.io" style="float:left")
+          img(src="/images/back-to-zesty-low.png" srcset="/images/back-to-zesty.png 2x" alt="Back to Zesty.io" height="20px")
+        a(href="https://developer.zesty.io") Developers
+        a(class="desktop-only" href="https://partners.zesty.io") Partners
+        a( href="https://blog.zesty.io") Blog
+        a(href="https://www.zesty.io/en-us/about/contact/") contact
+        a(class="login" href="https://accounts.zesty.io") Login
     #wrapper
       .main
         .header
-          h1
-            strong #{community}
+          div(style="text-align:center")
+            a(href="https://www.zesty.io" target="_blank")
+              img(style="border:1px #4C566A solid; border-radius: 15px;" width=88 src="https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2017-03-23/159800634455_98cb1ead4fbc969d9d3a_132.png")
+
+          h1 Invite Sent!
           h2(class="#{isFailed?'error':''}") !{message}
+        br
+        p(style="text-align:center") Try walking through our REPL at <a href="https://parsley.zesty.io">https://parsley.zesty.io</a>
+        br
+        p(style="text-align:center") View full documentation at <a href="https://developer.zesty.io">https://developer.zesty.io</a>
